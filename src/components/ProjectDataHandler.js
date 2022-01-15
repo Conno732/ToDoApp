@@ -40,12 +40,7 @@ const ProjectDataHandler = (() => {
   }
 
   //cure-all for modifying task data
-  function modifyTaskData(title, task, data) {}
-
-  //for the sake of ensuring no duplicate tasks are entered
-  function getTaskList(title) {
-    return ProjectsList[title].taskList;
-  }
+  function modifyTask(title, task, data) {}
 
   //check if inbox, week, today exist, otherwise add them
   //potentially have func to initialize each proj
@@ -76,10 +71,10 @@ const ProjectDataHandler = (() => {
     startup,
     getProjectData,
     addTask,
-    getTaskList,
+    removeTask,
+    modifyTask,
     removeProject,
     addProject,
-    removeTask,
   };
 })();
 

@@ -1,4 +1,3 @@
-import { ProjectDataHandler } from "./ProjectDataHandler";
 import { ProjectHandler } from "./ProjectDisplayHandler";
 import { NavBarHandler } from "./NavBarHandler";
 
@@ -11,16 +10,20 @@ import { NavBarHandler } from "./NavBarHandler";
 //will need to load in all custom projects into navbar
 function startup() {
   addAllListeners();
-  ProjectDataHandler.startup();
-  ProjectHandler.displayProject("Inbox");
+  ProjectHandler.startup();
   //NavBarHandler.loadContent();
 }
 
 //This function will take in the id of the element triggered
 //  and call the appropriate function
 function onClickHandler(e) {
-  //close, date, new-proj, select-proj
-  console.log(e.id);
+  //close-btn, date-in, project-btn
+
+  //add a chain of if/else or switch to see if proj or proj modifier was selected
+  if (e.classList.contains("project-btn")) {
+  } else {
+    ProjectHandler.displayProject(e.id);
+  }
 }
 
 //Purely EventListeners below
