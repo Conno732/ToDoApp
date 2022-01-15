@@ -1,5 +1,5 @@
 import { ProjectDataHandler } from "./ProjectDataHandler";
-import { ProjectHandler } from "./ProjectSectionHandler";
+import { ProjectHandler } from "./ProjectDisplayHandler";
 import { NavBarHandler } from "./NavBarHandler";
 
 //This handles the top level of the project
@@ -12,13 +12,16 @@ import { NavBarHandler } from "./NavBarHandler";
 function startup() {
   addAllListeners();
   ProjectDataHandler.startup();
+  ProjectHandler.displayProject("Inbox");
   //NavBarHandler.loadContent();
-  //ProjectHandler.loadContent("inbox");
 }
 
 //This function will take in the id of the element triggered
 //  and call the appropriate function
-function onClickHandler() {}
+function onClickHandler(e) {
+  //close, date, new-proj, select-proj
+  console.log(e.id);
+}
 
 //Purely EventListeners below
 
@@ -30,7 +33,7 @@ function addNavBtnListeners() {
   const buttons = document.querySelectorAll(".nav-btn");
   buttons.forEach((e) => {
     e.addEventListener("click", () => {
-      console.log(e.id);
+      onClickHandler(e);
     });
   });
 }
