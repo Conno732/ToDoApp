@@ -22,6 +22,7 @@ body {
   font-size: 64px;
   align-items: center;
   padding-left: 16px;
+  border-bottom: black solid 8px;
 }
 
 .content {
@@ -35,6 +36,7 @@ body {
   width: 250px;
   background-color: #92817a;
   padding: 24px;
+  border-right: black solid 8px;
 }
 
 .button-group {
@@ -103,4 +105,5 @@ body {
   color: #fffbff;
   align-items: center;
   justify-content: center;
+  border-top: 8px black solid;
 }
