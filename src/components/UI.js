@@ -9,20 +9,27 @@ import { NavBarHandler } from "./NavBarHandler";
 //automatically loads 'inbox'
 //will need to load in all custom projects into navbar
 function startup() {
-  addAllListeners();
   ProjectHandler.startup();
+  addAllListeners();
   //NavBarHandler.loadContent();
 }
 
 //This function will take in the id of the element triggered
 //  and call the appropriate function
 function onClickHandler(e) {
-  //remove-btn, date-in, project-btn, done-btn
-
+  //remove-btn, date-in, project-btn, done-btn, new-task, remove-proj-btn
+  const classVal = e.classList;
   //add a chain of if/else or switch to see if proj or proj modifier was selected
-  if (e.classList.contains("project-btn")) {
+  if (classVal.contains("project-btn")) {
+  } else if (classVal.contains("remove-btn")) {
+    const task = document.getElementById(e.id + "-task");
+    task.parentElement.removeChild(task);
+    ProjectHandler.removeTask(task);
+  } else if (classVal.contains("new-task")) {
+    console.log("hi");
   } else {
     ProjectHandler.displayProject(e.id);
+    addProjectListeners();
   }
 }
 
@@ -30,10 +37,52 @@ function onClickHandler(e) {
 
 function addAllListeners() {
   addNavBtnListeners();
+  addProjectListeners();
+}
+
+function addProjectListeners() {
+  addRemoveListeners();
+  newTaskListeners();
 }
 
 function addNavBtnListeners() {
   const buttons = document.querySelectorAll(".nav-btn");
+  buttons.forEach((e) => {
+    e.addEventListener("click", () => {
+      onClickHandler(e);
+    });
+  });
+}
+
+function addRemoveListeners() {
+  const buttons = document.querySelectorAll(".remove-btn");
+  buttons.forEach((e) => {
+    e.addEventListener("click", () => {
+      onClickHandler(e);
+    });
+  });
+}
+
+function addDateListeners() {
+  const buttons = document.querySelectorAll(".date-in");
+  buttons.forEach((e) => {
+    e.addEventListener("click", () => {
+      onClickHandler(e);
+    });
+  });
+}
+
+function addDoneListeners() {
+  const buttons = document.querySelectorAll(".done-in");
+  buttons.forEach((e) => {
+    e.addEventListener("click", () => {
+      onClickHandler(e);
+    });
+  });
+}
+
+function newTaskListeners() {
+  const buttons = document.querySelectorAll(".new-task");
   buttons.forEach((e) => {
     e.addEventListener("click", () => {
       onClickHandler(e);

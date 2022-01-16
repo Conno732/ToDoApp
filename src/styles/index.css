@@ -121,6 +121,8 @@ h1 {
 }
 
 .project-header {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   border-bottom: black 4px solid;
   margin-bottom: 32px;
@@ -131,7 +133,7 @@ h1 {
   display: flex;
   flex-direction: column;
   max-width: 100%;
-  width: 95%;
+  width: 85%;
 }
 
 .task {
@@ -141,31 +143,44 @@ h1 {
   height: 48px;
   align-items: center;
   justify-content: space-between;
-  background-color: #796b66;
-  padding: 0 8px;
-  border-bottom: black solid 1px;
+  background-color: #7e6f6a;
+  padding: 0 16px;
+  border: black solid 1px;
+  border-radius: 14px;
 }
 
 .task-side {
   display: flex;
   align-items: center;
+  gap: 16px;
 }
 
 .task-title {
   background-color: transparent;
   border: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
 }
 
 .done-btn {
   margin: 0;
-  width: 40px;
+  width: 24px;
   height: 24px;
 }
 
 .remove-btn {
   margin: 0;
-  width: 40px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
+  border-radius: 12px;
+  background-color: #f1dabf;
+  border: solid #362417;
+}
+
+.remove-btn:active {
+  background-color: #92817a;
+  border: #362417;
 }
 
 .add-container {

@@ -15,7 +15,6 @@ const ProjectHandler = (() => {
   function displayProject(id) {
     const projectData = loadProjectData(id);
     cleanProjectView();
-
     projectView.appendChild(htmlGen.generateProject(projectData));
   }
 
@@ -27,7 +26,11 @@ const ProjectHandler = (() => {
 
   function addTask() {}
 
-  function removeTask() {}
+  function removeTask(task) {
+    const proj = task.dataset.taskdata;
+    const taskName = task.dataset.title;
+    ProjectDataHandler.removeTask(proj, taskName);
+  }
 
   function modifyTask() {}
 
@@ -87,7 +90,7 @@ const ProjectHandler = (() => {
     ProjectDataHandler.addTask("Inbox", { title: "Godd", due: "2018-12-31" });
   }
 
-  return { displayProject, startup };
+  return { displayProject, startup, removeTask };
 })();
 
 export { ProjectHandler };

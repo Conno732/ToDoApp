@@ -1,4 +1,6 @@
-//Creates HTML and returns it
+import { ProjectDataHandler } from "./ProjectDataHandler";
+
+//Creates HTML and returns it also adds event listeners for some buttons
 
 //remove-btn, date-in, project-btn, done-btn
 
@@ -19,6 +21,8 @@ const htmlGen = (() => {
     title.innerText = project["title"];
     header.classList.add("project-header");
     header.appendChild(title);
+    header.appendChild(newTaskBtn(project));
+
     return header;
   }
 
@@ -32,17 +36,19 @@ const htmlGen = (() => {
     const listDiv = document.createElement("div");
     const taskList = Object.getOwnPropertyNames(project.taskList);
     taskList.forEach((e) => {
-      console.log(e);
-      listDiv.appendChild(generateTask(project.taskList[e]));
+      listDiv.appendChild(generateTask(project.taskList[e], project["title"]));
     });
     return listDiv;
   }
 
-  function generateTask(task) {
+  function generateTask(task, projTitle) {
     const taskDiv = document.createElement("div");
     const leftSide = document.createElement("div");
     const rightSide = document.createElement("div");
+    taskDiv.dataset.taskdata = projTitle;
+    taskDiv.dataset.title = task["title"];
     taskDiv.classList = "task";
+    taskDiv.id = task["title"] + "-task";
     leftSide.classList = "task-side";
     rightSide.classList = "task-side";
 
@@ -68,6 +74,8 @@ const htmlGen = (() => {
   function generateRemoveBtn(task) {
     const taskRemove = document.createElement("button");
     taskRemove.classList = "remove-btn";
+    taskRemove.innerText = "X";
+    taskRemove.id = task["title"];
     return taskRemove;
   }
 
@@ -79,11 +87,21 @@ const htmlGen = (() => {
   }
 
   function generateDoneBtn(task) {
-    const taskDone = document.createElement("button");
+    const taskDone = document.createElement("input");
+    taskDone.type = "checkbox";
     taskDone.classList = "done-btn";
     return taskDone;
   }
   //*****generate task components
+
+  function newTaskBtn(project) {
+    const newTask = document.createElement("button");
+    newTask.classList = "new-task";
+    newTask.innerText = "+ Add Task";
+    return newTask;
+  }
+
+  function projDelete(project) {}
 
   function generateProjectBtn(task) {}
 
