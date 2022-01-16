@@ -1,5 +1,6 @@
 import { ProjectHandler } from "./ProjectDisplayHandler";
 import { NavBarHandler } from "./NavBarHandler";
+import { form } from "./formController";
 
 //This handles the top level of the project
 //  Mainly the UI will handle events and call the appropriate function
@@ -26,7 +27,7 @@ function onClickHandler(e) {
     task.parentElement.removeChild(task);
     ProjectHandler.removeTask(task);
   } else if (classVal.contains("new-task")) {
-    console.log("hi");
+    form.taskForm();
   } else {
     ProjectHandler.displayProject(e.id);
     addProjectListeners();

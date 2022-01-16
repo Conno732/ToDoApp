@@ -1,4 +1,5 @@
 import "./styles/index.css";
+import "./styles/form.css";
 import { startup } from "./components/UI";
 
 //title, description, dueDate, checked
