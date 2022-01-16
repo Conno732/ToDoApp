@@ -66,6 +66,12 @@ const ProjectDataHandler = (() => {
     return ProjectsList.projects;
   }
 
+  function clearAll() {
+    ProjectsList.projects = {};
+    initStockProjects();
+    updateLocalStorage();
+  }
+
   //whenever The object is modified, update the local Storage
   function updateLocalStorage() {
     localStorage.setItem(AllProjectsID, JSON.stringify(ProjectsList.projects));
@@ -80,6 +86,7 @@ const ProjectDataHandler = (() => {
     removeProject,
     addProject,
     getProjectList,
+    clearAll,
   };
 })();
 

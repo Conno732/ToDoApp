@@ -11,7 +11,6 @@ const NavBarHandler = (() => {
       if (element === "Inbox" || element === "Week" || element === "Today")
         return;
       addProject(projectList[element]);
-      console.log(projectList[element]);
     });
   }
 
@@ -20,6 +19,8 @@ const NavBarHandler = (() => {
     const projBtn = htmlGen.generateProjectBtn(project);
     projList.appendChild(projBtn);
   }
+
+  function removeProject(project) {}
 
   return { startup };
 })();

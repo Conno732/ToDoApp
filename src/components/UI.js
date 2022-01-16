@@ -28,7 +28,9 @@ function onClickHandler(e) {
     task.parentElement.removeChild(task);
     ProjectHandler.removeTask(task);
   } else if (classVal.contains("new-task")) {
-    form.taskForm();
+    ProjectHandler.addTask(e.parentElement.parentElement);
+    ProjectHandler.displayProject(e.parentElement.parentElement.id);
+    addProjectListeners();
   } else {
     //project buttons
     ProjectHandler.displayProject(e.id);
@@ -44,9 +46,15 @@ function addAllListeners() {
 }
 
 function addProjectListeners() {
-  addRemoveListeners();
+  addTaskListeners();
   newTaskListeners();
 }
+
+function addTaskListeners() {
+  addRemoveListeners();
+}
+
+function addNewTaskListeners() {}
 
 function addNavBtnListeners() {
   const buttons = document.querySelectorAll(".nav-btn");

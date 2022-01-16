@@ -20,11 +20,18 @@ const ProjectHandler = (() => {
 
   function loadProjectData(id) {
     const project = ProjectDataHandler.getProjectData(id);
-    //console.log(project);
     return project;
   }
 
-  function addTask() {}
+  function addTask(element) {
+    //form.taskForm();
+    const project = ProjectDataHandler.getProjectData(element.id);
+    //const task = form.getReponse();
+    ProjectDataHandler.addTask(element.id, {
+      title: Date.now(),
+      due: "2018-12-31",
+    });
+  }
 
   function removeTask(task) {
     const proj = task.dataset.taskdata;
@@ -40,57 +47,19 @@ const ProjectHandler = (() => {
     }
   }
 
-  function testing() {
+  function testing(param) {
+    if (param) {
+      ProjectDataHandler.clearAll();
+      return;
+    }
     ProjectDataHandler.addProject("My-Project");
-    ProjectDataHandler.addTask("My-Project", {
-      title: "Go",
-      due: "2018-12-31",
-    });
-    ProjectDataHandler.addTask("My-Project", {
-      title: "Godo",
-      due: "2018-12-31",
-    });
-    ProjectDataHandler.addTask("My-Project", {
-      title: "22Go",
-      due: "2018-12-31",
-    });
-    ProjectDataHandler.addTask("My-Project", {
-      title: "Go33do",
-      due: "2018-12-31",
-    });
-    ProjectDataHandler.addTask("My-Project", {
-      title: "G33o",
-      due: "2018-12-31",
-    });
-    ProjectDataHandler.addTask("My-Project", {
-      title: "Godfdfdfo",
-      due: "2018-12-31",
-    });
-    ProjectDataHandler.addTask("My-Project", {
-      title: "22vvGo",
-      due: "2018-12-31",
-    });
-    ProjectDataHandler.addTask("My-Project", {
-      title: "Go3ssadas3do",
-      due: "2018-12-31",
-    });
-    ProjectDataHandler.addTask("My-Project", {
-      title: "22vvgg12Go",
-      due: "2018-12-31",
-    });
-    ProjectDataHandler.addTask("My-Project", {
-      title: "Go3ccccssadas3do",
-      due: "2018-12-31",
-    });
-    ProjectDataHandler.addTask("My-Project", {
-      title: "Godssadas3do",
-      due: "2018-12-31",
-    });
+
+    ProjectDataHandler.addProject("Other-proj");
 
     ProjectDataHandler.addTask("Inbox", { title: "Godd", due: "2018-12-31" });
   }
 
-  return { displayProject, startup, removeTask };
+  return { displayProject, startup, removeTask, addTask };
 })();
 
 export { ProjectHandler };

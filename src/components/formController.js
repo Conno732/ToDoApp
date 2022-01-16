@@ -12,7 +12,6 @@ const form = (() => {
   function genTaskForm() {
     const base = document.createElement("div");
     base.classList = "form";
-    const htmlForm = document.createElement("form");
 
     return base;
   }
