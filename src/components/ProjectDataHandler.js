@@ -62,6 +62,10 @@ const ProjectDataHandler = (() => {
     return ProjectsList.projects[id];
   }
 
+  function getProjectList() {
+    return ProjectsList.projects;
+  }
+
   //whenever The object is modified, update the local Storage
   function updateLocalStorage() {
     localStorage.setItem(AllProjectsID, JSON.stringify(ProjectsList.projects));
@@ -75,6 +79,7 @@ const ProjectDataHandler = (() => {
     modifyTask,
     removeProject,
     addProject,
+    getProjectList,
   };
 })();
 

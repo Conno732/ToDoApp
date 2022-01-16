@@ -11,8 +11,8 @@ import { form } from "./formController";
 //will need to load in all custom projects into navbar
 function startup() {
   ProjectHandler.startup();
+  NavBarHandler.startup();
   addAllListeners();
-  //NavBarHandler.loadContent();
 }
 
 //This function will take in the id of the element triggered
@@ -22,6 +22,7 @@ function onClickHandler(e) {
   const classVal = e.classList;
   //add a chain of if/else or switch to see if proj or proj modifier was selected
   if (classVal.contains("project-btn")) {
+    addNavBtnListeners();
   } else if (classVal.contains("remove-btn")) {
     const task = document.getElementById(e.id + "-task");
     task.parentElement.removeChild(task);
@@ -29,6 +30,7 @@ function onClickHandler(e) {
   } else if (classVal.contains("new-task")) {
     form.taskForm();
   } else {
+    //project buttons
     ProjectHandler.displayProject(e.id);
     addProjectListeners();
   }

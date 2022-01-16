@@ -103,9 +103,15 @@ const htmlGen = (() => {
 
   function projDelete(project) {}
 
-  function generateProjectBtn(task) {}
+  function generateProjectBtn(project) {
+    const projbtn = document.createElement("button");
+    projbtn.innerText = project["title"];
+    projbtn.id = project["title"];
+    projbtn.classList.add("nav-btn");
+    return projbtn;
+  }
 
-  return { generateProject };
+  return { generateProject, generateProjectBtn };
 })();
 
 export { htmlGen };
