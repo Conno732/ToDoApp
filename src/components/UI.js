@@ -17,7 +17,7 @@ function startup() {
 //This function will take in the id of the element triggered
 //  and call the appropriate function
 function onClickHandler(e) {
-  //close-btn, date-in, project-btn
+  //remove-btn, date-in, project-btn, done-btn
 
   //add a chain of if/else or switch to see if proj or proj modifier was selected
   if (e.classList.contains("project-btn")) {

@@ -22,7 +22,7 @@ body {
   font-size: 64px;
   align-items: center;
   padding-left: 16px;
-  border-bottom: black solid 8px;
+  border-bottom: black none 8px;
 }
 
 .content {
@@ -37,7 +37,7 @@ body {
   width: 250px;
   background-color: #92817a;
   padding: 24px;
-  border-right: black solid 8px;
+  border-right: black none 8px;
 }
 
 .button-group {
@@ -127,21 +127,45 @@ h1 {
 }
 
 .task-list {
+  align-self: center;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  flex-grow: 1;
-  padding: 0 32px;
+  max-width: 100%;
+  width: 95%;
 }
 
 .task {
   display: flex;
   width: 100%;
-  flex-shrink: 0;
   max-height: 48px;
   height: 48px;
   align-items: center;
   justify-content: space-between;
+  background-color: #796b66;
+  padding: 0 8px;
+  border-bottom: black solid 1px;
+}
+
+.task-side {
+  display: flex;
+  align-items: center;
+}
+
+.task-title {
+  background-color: transparent;
+  border: none;
+}
+
+.done-btn {
+  margin: 0;
+  width: 40px;
+  height: 24px;
+}
+
+.remove-btn {
+  margin: 0;
+  width: 40px;
+  height: 24px;
 }
 
 .add-container {
@@ -162,9 +186,9 @@ h1 {
   flex: 0 0 auto;
   font-size: 20px;
   background-color: #362417;
-  height: 40px;
+  height: 60px;
   color: #fffbff;
   align-items: center;
   justify-content: center;
-  border-top: 8px black solid;
+  border-top: 8px none solid;
 }

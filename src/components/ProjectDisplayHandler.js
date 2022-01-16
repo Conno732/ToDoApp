@@ -1,5 +1,5 @@
 import { ProjectDataHandler } from "./ProjectDataHandler";
-
+import { htmlGen } from "./HTMLGenerator";
 //UI makes a request to this module to display or update content
 // this module contact ProjectDataHandler to aquire the data from local storage and/or submit data.
 
@@ -16,7 +16,7 @@ const ProjectHandler = (() => {
     const projectData = loadProjectData(id);
     cleanProjectView();
 
-    projectView.appendChild(projectHTMLGen(projectData));
+    projectView.appendChild(htmlGen.generateProject(projectData));
   }
 
   function loadProjectData(id) {
@@ -37,46 +37,54 @@ const ProjectHandler = (() => {
     }
   }
 
-  function taskHTMLGen(task) {
-    const taskDiv = document.createElement("div");
-    taskDiv.classList.add("task");
-    taskDiv.innerText = task["title"] + " " + task["due"];
-    return taskDiv;
-  }
-
-  function generateTasks(project) {
-    const listDiv = document.createElement("div");
-    const taskList = Object.getOwnPropertyNames(project.taskList);
-    taskList.forEach((e) => {
-      listDiv.appendChild(taskHTMLGen(project.taskList[e]));
-    });
-    return listDiv;
-  }
-
-  function projectHTMLGen(project) {
-    const projectBase = document.createElement("div");
-    projectBase.id = project["title"];
-    const header = document.createElement("div");
-    const title = document.createElement("h1");
-    const taskList = generateTasks(project);
-    taskList.classList.add("task-list");
-    header.classList.add("project-header");
-    projectBase.classList.add("project-base");
-    projectBase.appendChild(header);
-
-    header.appendChild(title);
-
-    title.innerText = project["title"];
-
-    projectBase.appendChild(taskList);
-    return projectBase;
-  }
-
   function testing() {
     ProjectDataHandler.addProject("My-Project");
-    ProjectDataHandler.addTask("My-Project", { title: "Go", due: "last year" });
-    ProjectDataHandler.addTask("My-Project", { title: "Godo", due: "last s" });
-    ProjectDataHandler.addTask("Inbox", { title: "Godd", due: "last year" });
+    ProjectDataHandler.addTask("My-Project", {
+      title: "Go",
+      due: "2018-12-31",
+    });
+    ProjectDataHandler.addTask("My-Project", {
+      title: "Godo",
+      due: "2018-12-31",
+    });
+    ProjectDataHandler.addTask("My-Project", {
+      title: "22Go",
+      due: "2018-12-31",
+    });
+    ProjectDataHandler.addTask("My-Project", {
+      title: "Go33do",
+      due: "2018-12-31",
+    });
+    ProjectDataHandler.addTask("My-Project", {
+      title: "G33o",
+      due: "2018-12-31",
+    });
+    ProjectDataHandler.addTask("My-Project", {
+      title: "Godfdfdfo",
+      due: "2018-12-31",
+    });
+    ProjectDataHandler.addTask("My-Project", {
+      title: "22vvGo",
+      due: "2018-12-31",
+    });
+    ProjectDataHandler.addTask("My-Project", {
+      title: "Go3ssadas3do",
+      due: "2018-12-31",
+    });
+    ProjectDataHandler.addTask("My-Project", {
+      title: "22vvgg12Go",
+      due: "2018-12-31",
+    });
+    ProjectDataHandler.addTask("My-Project", {
+      title: "Go3ccccssadas3do",
+      due: "2018-12-31",
+    });
+    ProjectDataHandler.addTask("My-Project", {
+      title: "Godssadas3do",
+      due: "2018-12-31",
+    });
+
+    ProjectDataHandler.addTask("Inbox", { title: "Godd", due: "2018-12-31" });
   }
 
   return { displayProject, startup };
