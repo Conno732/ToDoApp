@@ -1,5 +1,6 @@
 import { ProjectDataHandler } from "./ProjectDataHandler";
 import { htmlGen } from "./HTMLGenerator";
+import { form } from "./formController";
 //UI makes a request to this module to display or update content
 // this module contact ProjectDataHandler to aquire the data from local storage and/or submit data.
 
@@ -9,7 +10,7 @@ const ProjectHandler = (() => {
   function startup() {
     ProjectDataHandler.startup();
     displayProject("Inbox");
-    testing();
+    //testing();
   }
 
   function displayProject(id) {
@@ -23,14 +24,12 @@ const ProjectHandler = (() => {
     return project;
   }
 
+  function removeProject() {}
+
   function addTask(element) {
-    //form.taskForm();
+    const task = form.newTaskForm();
     const project = ProjectDataHandler.getProjectData(element.id);
-    //const task = form.getReponse();
-    ProjectDataHandler.addTask(element.id, {
-      title: Date.now(),
-      due: "2018-12-31",
-    });
+    //ProjectDataHandler.addTask(element.id, task);
   }
 
   function removeTask(task) {
@@ -55,8 +54,6 @@ const ProjectHandler = (() => {
     ProjectDataHandler.addProject("My-Project");
 
     ProjectDataHandler.addProject("Other-proj");
-
-    ProjectDataHandler.addTask("Inbox", { title: "Godd", due: "2018-12-31" });
   }
 
   return { displayProject, startup, removeTask, addTask };

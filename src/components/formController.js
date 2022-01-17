@@ -1,22 +1,33 @@
 //this will control the form that appears when adding a task or project
 
 const form = (() => {
-  function projectForm() {}
-
-  function taskForm(project) {
+  function newProjectForm() {
     const overlay = document.getElementById("overlay");
     overlay.style.display = "flex";
-    overlay.appendChild(genTaskForm());
+    overlay.appendChild(generateProjectForm());
   }
 
-  function genTaskForm() {
+  function newTaskForm(project) {
+    const overlay = document.getElementById("overlay");
+    overlay.style.display = "flex";
+    overlay.appendChild(generateTaskForm());
+  }
+
+  function generateProjectForm() {
     const base = document.createElement("div");
     base.classList = "form";
-
+    const title = document.createElement("input");
+    title.type = "text";
     return base;
   }
 
-  return { projectForm, taskForm };
+  function generateTaskForm() {
+    const base = document.createElement("div");
+    base.classList = "form";
+    return base;
+  }
+
+  return { newProjectForm, newTaskForm };
 })();
 
 export { form };

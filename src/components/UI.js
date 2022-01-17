@@ -1,6 +1,5 @@
 import { ProjectHandler } from "./ProjectDisplayHandler";
 import { NavBarHandler } from "./NavBarHandler";
-import { form } from "./formController";
 
 //This handles the top level of the project
 //  Mainly the UI will handle events and call the appropriate function
