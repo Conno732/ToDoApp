@@ -1,5 +1,6 @@
 import { ProjectHandler } from "./ProjectDisplayHandler";
 import { NavBarHandler } from "./NavBarHandler";
+import { form } from "./formController";
 
 //This handles the top level of the project
 //  Mainly the UI will handle events and call the appropriate function
@@ -21,20 +22,49 @@ function onClickHandler(e) {
   const classVal = e.classList;
   //add a chain of if/else or switch to see if proj or proj modifier was selected
   if (classVal.contains("project-btn")) {
-    addNavBtnListeners();
+    form.removeForm();
+    form.newForm("project");
+    document.getElementById("submit").addEventListener("click", (element) => {
+      onProjectFormSubmit();
+    });
   } else if (classVal.contains("remove-btn")) {
     const task = document.getElementById(e.id + "-task");
     task.parentElement.removeChild(task);
     ProjectHandler.removeTask(task);
   } else if (classVal.contains("new-task")) {
-    ProjectHandler.addTask(e.parentElement.parentElement);
-    ProjectHandler.displayProject(e.parentElement.parentElement.id);
-    addProjectListeners();
+    form.newForm("task");
+    document.getElementById("submit").addEventListener("click", (element) => {
+      onTaskFormSubmit();
+    });
   } else {
     //project buttons
     ProjectHandler.displayProject(e.id);
     addProjectListeners();
   }
+}
+
+function onTaskFormSubmit(e) {
+  const taskTitle = document.getElementById("form-title").value;
+  const taskDate = document.getElementById("form-date").value;
+  const projTitle = document.querySelector(".project-base").id;
+  if (!(taskDate && taskTitle)) return;
+  //check if taskTitle is original
+  const taskObj = {};
+  taskObj["title"] = taskTitle;
+  taskObj["due"] = taskDate;
+  taskObj["checkbox"] = "unchecked;";
+  ProjectHandler.addTask(projTitle, taskObj);
+  ProjectHandler.displayProject(projTitle);
+  form.removeForm();
+  addProjectListeners();
+}
+
+function onProjectFormSubmit() {
+  const projTitle = document.getElementById("form-title").value;
+  ProjectHandler.addProject(projTitle);
+  NavBarHandler.addProject(projTitle, true);
+  form.removeForm();
+  addNavBtnListeners();
 }
 
 //Purely EventListeners below
@@ -47,6 +77,15 @@ function addAllListeners() {
 function addProjectListeners() {
   addTaskListeners();
   newTaskListeners();
+  removeProjectListener();
+}
+
+function removeProjectListener() {
+  document
+    .querySelector(`#${"Inbox"}.nav-btn`)
+    .addEventListener("click", () => {
+      console.log("works");
+    });
 }
 
 function addTaskListeners() {

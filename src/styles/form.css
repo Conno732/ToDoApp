@@ -16,9 +16,22 @@
 
 .form {
   margin-top: 100px;
-  width: 500px;
-  height: 500px;
+  width: 300px;
+  min-height: 300px;
+  padding-top: 44px;
   border: solid brown 4px;
   border-radius: 32px;
   background-color: blanchedalmond;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.form-entries {
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+}
+textarea {
+  resize: none;
 }

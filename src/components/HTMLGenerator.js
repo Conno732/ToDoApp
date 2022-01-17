@@ -43,56 +43,21 @@ const htmlGen = (() => {
 
   function generateTask(task, projTitle) {
     const taskDiv = document.createElement("div");
-    const leftSide = document.createElement("div");
-    const rightSide = document.createElement("div");
     taskDiv.dataset.taskdata = projTitle;
     taskDiv.dataset.title = task["title"];
     taskDiv.classList = "task";
     taskDiv.id = task["title"] + "-task";
-    leftSide.classList = "task-side";
-    rightSide.classList = "task-side";
-
-    leftSide.appendChild(generateDoneBtn(task));
-    leftSide.appendChild(generateTaskTitle(task));
-
-    rightSide.appendChild(generateDateIn(task));
-    rightSide.appendChild(generateRemoveBtn(task));
-
-    taskDiv.appendChild(leftSide);
-    taskDiv.appendChild(rightSide);
-
+    taskDiv.innerHTML = `
+      <div class="task-side">
+        <input type="checkbox" value="${task["checkbox"]}" class="done-btn">
+        <input value="${task["title"]}" class="task-title">
+      </div>
+      <div class="task-side">
+        <input type="date" value="${task["due"]}">
+        <button id="${task["title"]}" class="remove-btn">X</button>
+      </div>`;
     return taskDiv;
   }
-  //generate task components
-  function generateTaskTitle(task) {
-    const taskTitle = document.createElement("input");
-    taskTitle.value = task["title"];
-    taskTitle.classList = "task-title";
-    return taskTitle;
-  }
-
-  function generateRemoveBtn(task) {
-    const taskRemove = document.createElement("button");
-    taskRemove.classList = "remove-btn";
-    taskRemove.innerText = "X";
-    taskRemove.id = task["title"];
-    return taskRemove;
-  }
-
-  function generateDateIn(task) {
-    const taskDate = document.createElement("input");
-    taskDate.type = "date";
-    taskDate.value = task["due"];
-    return taskDate;
-  }
-
-  function generateDoneBtn(task) {
-    const taskDone = document.createElement("input");
-    taskDone.type = "checkbox";
-    taskDone.classList = "done-btn";
-    return taskDone;
-  }
-  //*****generate task components
 
   function newTaskBtn(project) {
     const newTask = document.createElement("button");
