@@ -14,15 +14,26 @@ const NavBarHandler = (() => {
     });
   }
 
-  function addProject(project) {
+  function addProject(project, newBtn) {
     const projList = document.getElementById("project-list");
-    const projBtn = htmlGen.generateProjectBtn(project);
+    let projBtn = null;
+    if (newBtn) {
+      let projObj = ProjectDataHandler.getProjectData(project);
+      console.log(projObj);
+      projBtn = htmlGen.generateProjectBtn(projObj);
+    } else {
+      projBtn = htmlGen.generateProjectBtn(project);
+    }
     projList.appendChild(projBtn);
   }
 
-  function removeProject(project) {}
+  function removeProject(project) {
+    const projBtn = document.querySelector(`#${project}.nav-btn`);
+    const projList = document.getElementById("project-list");
+    projList.removeChild(projBtn);
+  }
 
-  return { startup };
+  return { startup, addProject };
 })();
 
 export { NavBarHandler };
