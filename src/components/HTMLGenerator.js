@@ -10,7 +10,6 @@ const htmlGen = (() => {
     projectBase.id = project["title"];
     projectBase.classList.add("project-base");
     projectBase.appendChild(generateProjectHeader(project));
-
     projectBase.appendChild(generateTaskList(project));
     return projectBase;
   }
@@ -21,7 +20,10 @@ const htmlGen = (() => {
     title.innerText = project["title"];
     header.classList.add("project-header");
     header.appendChild(title);
-    header.appendChild(newTaskBtn(project));
+    const headerleft = document.createElement("div");
+    headerleft.appendChild(newTaskBtn(project));
+    headerleft.appendChild(projDelete());
+    header.appendChild(headerleft);
 
     return header;
   }
@@ -49,11 +51,11 @@ const htmlGen = (() => {
     taskDiv.id = task["title"] + "-task";
     taskDiv.innerHTML = `
       <div class="task-side">
-        <input type="checkbox" value="${task["checkbox"]}" class="done-btn">
-        <input value="${task["title"]}" class="task-title">
+        <input class="task-vals" type="checkbox" value="${task["checkbox"]}" class="done-btn">
+        <input  value="${task["title"]}" class="task-title task-vals">
       </div>
-      <div class="task-side">
-        <input type="date" value="${task["due"]}">
+      <div  class="task-side">
+        <input class="task-vals" type="date" value="${task["due"]}">
         <button id="${task["title"]}" class="remove-btn">X</button>
       </div>`;
     return taskDiv;
@@ -66,7 +68,12 @@ const htmlGen = (() => {
     return newTask;
   }
 
-  function projDelete(project) {}
+  function projDelete() {
+    const newTask = document.createElement("button");
+    newTask.classList = "del-proj-btn";
+    newTask.innerText = "Delete Project";
+    return newTask;
+  }
 
   function generateProjectBtn(project) {
     const projbtn = document.createElement("button");

@@ -74,10 +74,20 @@ function addAllListeners() {
   addProjectListeners();
 }
 
+function modifyListeners() {
+  const inputs = document.querySelectorAll(".task-vals");
+  inputs.forEach((e) => {
+    e.addEventListener("change", () => {
+      console.log(e.parentElement.parentElement.dataset.title);
+    });
+  });
+}
+
 function addProjectListeners() {
   addTaskListeners();
   newTaskListeners();
   removeProjectListener();
+  modifyListeners();
 }
 
 function removeProjectListener() {
